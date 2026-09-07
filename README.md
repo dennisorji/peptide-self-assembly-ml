@@ -1,114 +1,146 @@
 # Condition-Aware Machine Learning for Short-Peptide Self-Assembly
 
-A leakage-aware machine-learning study of **short-peptide bulk state and supramolecular morphology** using peptide chemistry together with experimental conditions.
+Machine learning of **short-peptide bulk state and supramolecular morphology** using peptide chemistry together with experimental conditions, with explicit controls for molecular-identity leakage.
 
-The central premise is that self-assembly is not a fixed property of peptide identity alone. A more realistic formulation is:
+Self-assembly is treated as a molecule–environment problem: the observed state depends on both the chemistry of the peptide system and the conditions under which it is assembled.
 
-\[
-Y = f(\text{peptide chemistry},\ \text{experimental environment})
-\]
+## Study highlights
 
-This repository accompanies **Paper 2** of my materials-informatics research portfolio and contains the full end-to-end analysis in one reproducible notebook.
-
-## Why this project matters
-
-Self-assembly databases contain repeated condition-level observations for the same molecular systems. A conventional random row split can therefore place the same peptide identity in both training and test data, giving an overly optimistic view of generalization.
-
-This project addresses that problem by combining:
-
-- publication- and provenance-aware data curation;
-- chemically meaningful molecular-identity reconstruction;
-- peptide physicochemical descriptors and experimental-condition features;
-- molecular-identity-grouped model development;
-- permanently sealed **unseen-molecule holdouts**;
-- publication-aware robustness checks;
-- molecule-cluster bootstrap confidence intervals;
-- error analysis and feature-block sensitivity experiments.
+- Curates condition-level records from **PeptideMiner** and **SAPdb** with publication/provenance checks.
+- Reconstructs chemically meaningful molecular identities from sequence, topology, terminal modifications and conjugation information.
+- Uses 58 molecular and experimental-condition features.
+- Quantifies the leakage produced by conventional random row splitting.
+- Uses molecular-identity-grouped development and permanently held-out unseen molecules for the main generalization claims.
+- Adds publication-aware robustness analyses and molecule-cluster bootstrap confidence intervals.
+- Separates transferable broad morphology modelling from fine-grained classes that lack sufficient independent chemical support.
 
 ## Key results
 
 | Prediction task | Independent holdout | Selected model | Main performance |
 |---|---:|---|---|
 | Hydrogel vs non-gel | 115 rows, **20 unseen molecules** | Random Forest | ROC-AUC **0.977**, PR-AUC **0.882**, balanced accuracy **0.945**, MCC **0.836** |
-| Non-gel vs hydrogel vs organogel | 129 rows, **20 unseen molecules** | Histogram Gradient Boosting | Macro ROC-AUC **0.783**, macro PR-AUC **0.555**, balanced accuracy **0.613** |
+| Non-gel vs hydrogel vs organogel | 129 rows, **20 unseen molecules** | Histogram Gradient Boosting | Macro ROC-AUC **0.783**, macro PR-AUC **0.555**, balanced accuracy **0.613**, MCC **0.247** |
 | Broad morphology | 59 rows, **14 unseen molecules** | Extra Trees | Macro ROC-AUC **0.980**, macro PR-AUC **0.925**, balanced accuracy **0.711**, MCC **0.665** |
 
-The strong binary result should be interpreted together with the limited number of independent holdout molecules and the molecule-cluster confidence intervals reported in the notebook.
+The holdouts contain limited numbers of independent molecular systems, so these point estimates should be interpreted together with the molecule-cluster bootstrap confidence intervals reported in the analysis notebook.
 
-## 1. Why random row splitting is misleading
+## Molecular leakage under random row splitting
 
 ![Molecular leakage under random row splitting](figures/readme_figure_1_leakage.svg)
 
-Approximately **87.3% of nominal test molecular identities** in a conventional random split were already present in training, while approximately **94.2% of test rows** came from molecular identities represented in training. This motivated molecule-grouped validation for the main claims.
+Approximately **87.3% of nominal test molecular identities** in a conventional random split were already represented in training, and approximately **94.2% of test rows** came from molecular identities already represented in training. This is why row-wise random splitting is not used for the primary transfer claims.
 
-## 2. Generalization to unseen molecules
+## Binary hydrogel prediction on unseen molecules
 
 ![Binary hydrogel holdout performance](figures/readme_figure_2_binary_holdout.svg)
 
-The primary hydrogel/non-gel model was selected and tuned using development data only, then evaluated once on a permanent holdout containing 20 molecular identities absent from training.
+The hydrogel/non-gel model family, hyperparameters and classification threshold were selected using development data before evaluation on the permanent unseen-molecule holdout. The final holdout confusion matrix was **TN 73, FP 9, FN 0, TP 33**.
 
-## 3. Experimental environment matters
+## Experimental environment matters
 
 ![Feature-block permutation importance](figures/readme_figure_3_feature_blocks.svg)
 
-Solvent identity and composition provide the strongest transferable feature block. However, fully aqueous analyses show that concentration, pH, temperature and other non-solvent conditions retain predictive information even after solvent-composition variation is removed.
+Solvent identity/composition is the dominant transferable information block in the binary model. However, fully aqueous analyses show that concentration, pH, temperature and related non-solvent conditions retain predictive information even when solvent-composition variation is removed.
 
-## 4. Row count is not independent chemical sample size
+## Independent support for morphology
 
 ![Independent support for broad morphology classes](figures/readme_figure_4_morphology_support.svg)
 
-Morphology auditing exposed a key limitation of condition-level databases: many rows may originate from very few independent molecular systems. For example, the crystalline class contained 34 observations but only **one molecular identity and one publication**, so it was retained descriptively but excluded from transferable broad-morphology modelling.
+Condition-row count can substantially overstate independent chemical support. The crystalline class, for example, contains 34 observations but only **one molecular identity and one publication**; it is therefore retained descriptively but excluded from transferable broad-morphology classification.
 
 ## Scientific conclusions
 
-1. **Data curation is part of the modelling problem.** Bulk-state and morphology labels required source- and solvent-aware reconstruction before ML.
-2. **Self-assembly is a molecule × environment problem.** Peptide chemistry and experimental conditions should be modelled together.
-3. **Leakage-aware validation materially changes the meaning of performance.** Random row-wise splits are not suitable for claims about unseen peptide systems.
-4. **Binary hydrogel prediction transfers strongly to unseen molecules**, although uncertainty must be interpreted at the molecular rather than row level.
-5. **Three-class bulk-state prediction is substantially harder**, especially the distinction between organic non-gelling systems and organogels.
-6. **Broad morphology is learnable, but independent class support is uneven.**
-7. Current composition-based descriptors do not fully encode **residue order, three-dimensional packing or supramolecular interaction geometry**, which explains several analogue and composition-isomer errors.
+1. **Curation is part of the modelling problem.** Bulk-state and morphology labels require source-, solvent- and provenance-aware reconstruction before machine learning.
+2. **Self-assembly is condition dependent.** Peptide chemistry and the experimental environment should be represented jointly.
+3. **Leakage-aware validation changes the meaning of performance.** Random row-wise splits are unsuitable for claims about unseen peptide systems when repeated conditions from the same molecule are present.
+4. **Binary hydrogel prediction transfers strongly to unseen molecular identities**, subject to the uncertainty implied by the limited independent holdout size.
+5. **Three-class bulk-state prediction is substantially harder**, particularly for organic non-gelling systems versus organogels.
+6. **Broad morphology is learnable, but independent support is uneven across classes.**
+7. The current descriptor set does not fully encode **residue order, three-dimensional packing or supramolecular interaction geometry**, which is consistent with several analogue and composition-isomer errors.
 
-## Fine-grained morphology: why modelling was stopped
+## Fine-grained morphology
 
-A four-class fine-morphology dataset contained 257 condition rows from 57 molecular identities. A permanent unseen-molecule holdout was successfully reserved, but the remaining development data could not support stable three-fold molecularly independent cross-validation while maintaining minimum rare-class support.
+The four-class fine-morphology subset contains 257 condition rows from 57 molecular identities. After reserving an unseen-molecule holdout, the development set could not support stable three-fold molecularly independent cross-validation while maintaining the prespecified rare-class support requirements. The fine-grained predictive task was therefore not pursued by weakening molecular-independence safeguards.
 
-Rather than weaken the leakage safeguards, predictive modelling was stopped. This is reported as an **independent-support limitation**, not as a failed classifier.
+This is an **independent-support limitation**, not a failed classifier.
 
 ## Repository structure
 
 ```text
 peptide-self-assembly-ml/
 ├── README.md
+├── CITATION.cff
+├── environment.yml
 ├── requirements.txt
-├── notebooks/
-│   └── Condition_Aware_Peptide_Self_Assembly_ML.ipynb
+├── data/
+│   └── README.md
 ├── figures/
+│   ├── README.md
 │   ├── readme_figure_1_leakage.svg
 │   ├── readme_figure_2_binary_holdout.svg
 │   ├── readme_figure_3_feature_blocks.svg
 │   └── readme_figure_4_morphology_support.svg
-└── data/
-    └── README.md
+└── notebooks/
+    ├── README.md
+    └── Condition_Aware_Peptide_Self_Assembly_ML.ipynb
 ```
 
 ## Reproducibility
 
-The complete analysis is intentionally retained in **one master notebook**, divided into scientific sections covering data audit, curation, feature engineering, leakage analysis, binary modelling, three-class bulk-state modelling, morphology modelling, feasibility checks, artifact export and final conclusions.
+### 1. Clone the repository
 
-To run locally:
+```bash
+git clone https://github.com/dennisorji/peptide-self-assembly-ml.git
+cd peptide-self-assembly-ml
+```
+
+### 2. Create the environment
+
+With Conda:
+
+```bash
+conda env create -f environment.yml
+conda activate peptide-self-assembly-ml
+```
+
+or with pip:
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook
 ```
 
-Open `notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb`, restart the kernel and run all cells from top to bottom.
+### 3. Obtain the source data
 
-The notebook expects the source CSV files under `data/raw/`; see `data/README.md` for the expected filenames.
+Follow [`data/README.md`](data/README.md) and place the two expected CSV files under `data/raw/`:
 
-## Project status
+```text
+data/raw/peptideminer_phase_data_clean.csv
+data/raw/sapdb_v1.csv
+```
 
-**Analysis complete; manuscript/preprint preparation in progress.**
+The raw source datasets are intentionally not duplicated in this repository; the data README links to the upstream resources.
 
-The repository will be updated with the final manuscript citation and archival DOI after preprint release.
+### 4. Run the analysis
+
+Launch Jupyter from the repository directory and open:
+
+[`notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb`](notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb)
+
+The notebook writes generated datasets, tables, model objects and publication figures to `paper_outputs/`. That directory is ignored by Git because it is reproducible from the source data and notebook.
+
+## Data sources
+
+- **PeptideMiner** — Yang, Yorke, Knowles & Buehler, *PeptideMiner: Learning the rules of peptide self-assembly through data mining with large language models*. Source repository: https://github.com/lamm-mit/PeptideMiner
+- **SAPdb** — Mathur, Kaur, Dhall, Sharma & Raghava (2021), *SAPdb: A database of short peptides and the corresponding nanostructures formed by self-assembly*, *Computers in Biology and Medicine*, 133, 104391. https://doi.org/10.1016/j.compbiomed.2021.104391
+
+SAPdb v1 is also archived at https://doi.org/10.5281/zenodo.20078457.
+
+## Limitations
+
+The molecular holdouts are intentionally independent but modest in size. Broad-morphology uncertainty is especially wide because the permanent holdout contains only 14 molecular identities and only two vesicular identities. Publication-familiarity analyses also do not justify a universal unseen-publication morphology claim because the unseen-publication subset in that analysis contains only elongated/1D examples.
+
+The descriptor representation is primarily composition- and physicochemistry-aware and does not fully resolve sequence order or supramolecular packing. These limitations define the most important directions for future representation and data-development work.
+
+## Citation
+
+Citation metadata for this repository is provided in [`CITATION.cff`](CITATION.cff).
