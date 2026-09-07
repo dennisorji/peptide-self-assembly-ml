@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite it using the metadata below."
+title: "Condition-Aware Machine Learning for Short-Peptide Self-Assembly"
+type: software
+authors:
+  - family-names: "Orji"
+    given-names: "Dennis Obinna"
+repository-code: "https://github.com/dennisorji/peptide-self-assembly-ml"
+url: "https://github.com/dennisorji/peptide-self-assembly-ml"
+date-released: "2026-09-07"
