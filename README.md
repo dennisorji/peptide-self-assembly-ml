@@ -37,25 +37,25 @@ The strong binary result should be interpreted together with the limited number 
 
 ## 1. Why random row splitting is misleading
 
-![Molecular leakage under random row splitting](figures/figure_1_random_split_leakage.png)
+![Molecular leakage under random row splitting](figures/readme_figure_1_leakage.svg)
 
 Approximately **87.3% of nominal test molecular identities** in a conventional random split were already present in training, while approximately **94.2% of test rows** came from molecular identities represented in training. This motivated molecule-grouped validation for the main claims.
 
 ## 2. Generalization to unseen molecules
 
-![Binary hydrogel ROC curve](figures/figure_2_binary_holdout_roc.png)
+![Binary hydrogel holdout performance](figures/readme_figure_2_binary_holdout.svg)
 
 The primary hydrogel/non-gel model was selected and tuned using development data only, then evaluated once on a permanent holdout containing 20 molecular identities absent from training.
 
 ## 3. Experimental environment matters
 
-![Feature-block permutation importance](figures/figure_3_feature_block_importance.png)
+![Feature-block permutation importance](figures/readme_figure_3_feature_blocks.svg)
 
 Solvent identity and composition provide the strongest transferable feature block. However, fully aqueous analyses show that concentration, pH, temperature and other non-solvent conditions retain predictive information even after solvent-composition variation is removed.
 
 ## 4. Row count is not independent chemical sample size
 
-![Independent support for broad morphology classes](figures/figure_6_broad_morphology_support.png)
+![Independent support for broad morphology classes](figures/readme_figure_4_morphology_support.svg)
 
 Morphology auditing exposed a key limitation of condition-level databases: many rows may originate from very few independent molecular systems. For example, the crystalline class contained 34 observations but only **one molecular identity and one publication**, so it was retained descriptively but excluded from transferable broad-morphology modelling.
 
@@ -84,14 +84,10 @@ peptide-self-assembly-ml/
 ├── notebooks/
 │   └── Condition_Aware_Peptide_Self_Assembly_ML.ipynb
 ├── figures/
-│   ├── figure_1_random_split_leakage.png
-│   ├── figure_2_binary_holdout_roc.png
-│   ├── figure_3_feature_block_importance.png
-│   ├── figure_4_fully_aqueous_concentration_response.png
-│   ├── figure_5_bulk3_confusion_matrix.png
-│   ├── figure_6_broad_morphology_support.png
-│   ├── figure_7_morphology_confusion_matrix.png
-│   └── figure_S1_fine_morphology_support.png
+│   ├── readme_figure_1_leakage.svg
+│   ├── readme_figure_2_binary_holdout.svg
+│   ├── readme_figure_3_feature_blocks.svg
+│   └── readme_figure_4_morphology_support.svg
 └── data/
     └── README.md
 ```
