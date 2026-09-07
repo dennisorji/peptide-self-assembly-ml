@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Binary hydrogel model performance on unseen molecules</title>
+  <desc id="desc">Random Forest performance on 115 conditions from 20 unseen molecular identities with confusion matrix 73 true negatives, 9 false positives, 0 false negatives and 33 true positives.</desc>
+  <rect width="960" height="520" fill="white"/>
+  <style>
+    .title{font:700 26px Arial,sans-serif;fill:#111827}.sub{font:16px Arial,sans-serif;fill:#4b5563}
+    .h{font:700 18px Arial,sans-serif;fill:#111827}.lab{font:16px Arial,sans-serif;fill:#374151}
+    .count{font:700 31px Arial,sans-serif;fill:#111827}.metric{font:700 24px Arial,sans-serif;fill:#1d4ed8}
+    .cell1{fill:#dbeafe;stroke:#93c5fd}.cell2{fill:#fef3c7;stroke:#fcd34d}.cell3{fill:#dcfce7;stroke:#86efac}
+  </style>
+  <text x="40" y="48" class="title">Primary binary task: hydrogel vs non-gel</text>
+  <text x="40" y="78" class="sub">Permanent holdout: 115 condition rows from 20 molecular identities absent from development data</text>
+  <text x="40" y="126" class="h">Unseen-molecule confusion matrix</text>
+  <text x="267" y="160" class="lab" text-anchor="middle">Predicted non-gel</text><text x="447" y="160" class="lab" text-anchor="middle">Predicted hydrogel</text>
+  <text x="105" y="242" class="lab">True non-gel</text><text x="105" y="362" class="lab">True hydrogel</text>
+  <rect x="180" y="180" width="175" height="110" rx="8" class="cell3"/><rect x="360" y="180" width="175" height="110" rx="8" class="cell2"/>
+  <rect x="180" y="300" width="175" height="110" rx="8" class="cell1"/><rect x="360" y="300" width="175" height="110" rx="8" class="cell3"/>
+  <text x="267" y="247" class="count" text-anchor="middle">73</text><text x="447" y="247" class="count" text-anchor="middle">9</text>
+  <text x="267" y="367" class="count" text-anchor="middle">0</text><text x="447" y="367" class="count" text-anchor="middle">33</text>
+  <text x="650" y="145" class="h">Holdout metrics</text>
+  <text x="650" y="195" class="lab">ROC-AUC</text><text x="865" y="195" class="metric" text-anchor="end">0.977</text>
+  <text x="650" y="240" class="lab">PR-AUC</text><text x="865" y="240" class="metric" text-anchor="end">0.882</text>
+  <text x="650" y="285" class="lab">Balanced accuracy</text><text x="865" y="285" class="metric" text-anchor="end">0.945</text>
+  <text x="650" y="330" class="lab">F1</text><text x="865" y="330" class="metric" text-anchor="end">0.880</text>
+  <text x="650" y="375" class="lab">MCC</text><text x="865" y="375" class="metric" text-anchor="end">0.836</text>
+  <text x="40" y="475" class="sub">Model family, hyperparameters and decision threshold were frozen before opening the permanent holdout.</text>
+</svg>
