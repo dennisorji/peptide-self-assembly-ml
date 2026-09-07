@@ -1,11 +1,11 @@
 .ipynb_checkpoints/
 __pycache__/
-*.pyc
+*.py[cod]
 .DS_Store
 Thumbs.db
 
-# Local source data (see data/README.md)
+# Upstream source data are obtained separately; see data/README.md
 data/raw/
 
-# Large generated model artifacts
-paper_outputs/models/
+# Reproducible generated artifacts
+paper_outputs/
