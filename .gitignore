@@ -1,0 +1,11 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# Local source data (see data/README.md)
+data/raw/
+
+# Large generated model artifacts
+paper_outputs/models/
