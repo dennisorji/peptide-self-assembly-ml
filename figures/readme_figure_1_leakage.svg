@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-labelledby="title desc">
+  <title id="title">Molecular leakage under conventional random row splitting</title>
+  <desc id="desc">87.3 percent of test molecular identities were already seen in training and 94.2 percent of test rows came from molecular identities already seen in training.</desc>
+  <rect width="960" height="430" fill="white"/>
+  <style>
+    .title{font:700 26px Arial,sans-serif;fill:#111827}.sub{font:16px Arial,sans-serif;fill:#4b5563}
+    .label{font:17px Arial,sans-serif;fill:#111827}.axis{font:14px Arial,sans-serif;fill:#6b7280}
+    .value{font:700 18px Arial,sans-serif;fill:#111827}.grid{stroke:#e5e7eb;stroke-width:1}.bar{fill:#2563eb}
+  </style>
+  <text x="40" y="48" class="title">Molecular leakage under random row splitting</text>
+  <text x="40" y="77" class="sub">Why row-wise train/test splits are not independent for repeated peptide systems</text>
+  <line x1="380" y1="115" x2="380" y2="340" stroke="#9ca3af"/>
+  <line x1="500" y1="115" x2="500" y2="340" class="grid"/><line x1="620" y1="115" x2="620" y2="340" class="grid"/>
+  <line x1="740" y1="115" x2="740" y2="340" class="grid"/><line x1="860" y1="115" x2="860" y2="340" class="grid"/>
+  <text x="380" y="365" class="axis" text-anchor="middle">0%</text><text x="500" y="365" class="axis" text-anchor="middle">25%</text>
+  <text x="620" y="365" class="axis" text-anchor="middle">50%</text><text x="740" y="365" class="axis" text-anchor="middle">75%</text>
+  <text x="860" y="365" class="axis" text-anchor="middle">100%</text>
+  <text x="40" y="165" class="label">Test molecular identities already</text><text x="40" y="189" class="label">present in training</text>
+  <rect x="380" y="145" width="419.0" height="50" rx="6" class="bar"/><text x="814" y="177" class="value">87.3%</text>
+  <text x="40" y="265" class="label">Test rows from molecular identities</text><text x="40" y="289" class="label">already present in training</text>
+  <rect x="380" y="245" width="452.2" height="50" rx="6" class="bar"/><text x="847" y="277" class="value">94.2%</text>
+  <text x="40" y="405" class="sub">Main study response: molecular-identity-grouped validation + sealed unseen-molecule holdouts.</text>
+</svg>
