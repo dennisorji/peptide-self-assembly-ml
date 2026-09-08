@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it using the metadata below."
+message: "If you use this repository, please cite the associated ChemRxiv preprint using the metadata below."
 title: "Condition-Aware Machine Learning for Short-Peptide Self-Assembly"
 type: software
 authors:
@@ -8,3 +8,12 @@ authors:
 repository-code: "https://github.com/dennisorji/peptide-self-assembly-ml"
 url: "https://github.com/dennisorji/peptide-self-assembly-ml"
 date-released: "2026-09-07"
+preferred-citation:
+  type: article
+  title: "Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly Across Bulk State and Supramolecular Morphology"
+  authors:
+    - family-names: "Orji"
+      given-names: "Dennis Obinna"
+  year: 2026
+  doi: "10.26434/chemrxiv.15008469/v1"
+  url: "https://doi.org/10.26434/chemrxiv.15008469/v1"
