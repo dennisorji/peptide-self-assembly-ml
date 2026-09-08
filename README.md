@@ -4,6 +4,16 @@ Machine learning of **short-peptide bulk state and supramolecular morphology** u
 
 Self-assembly is treated as a molecule–environment problem: the observed state depends on both the chemistry of the peptide system and the conditions under which it is assembled.
 
+## ChemRxiv preprint
+
+This work is published as a ChemRxiv preprint:
+
+**Dennis Obinna Orji (2026). _Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly Across Bulk State and Supramolecular Morphology._ ChemRxiv, Version 1.**
+
+**DOI:** [10.26434/chemrxiv.15008469/v1](https://doi.org/10.26434/chemrxiv.15008469/v1)
+
+Published: **8 September 2026**
+
 ## Study highlights
 
 - Curates condition-level records from **PeptideMiner** and **SAPdb** with publication/provenance checks.
@@ -143,4 +153,8 @@ The descriptor representation is primarily composition- and physicochemistry-awa
 
 ## Citation
 
-Citation metadata for this repository is provided in [`CITATION.cff`](CITATION.cff).
+Please cite the associated ChemRxiv preprint:
+
+**Dennis Obinna Orji (2026). _Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly Across Bulk State and Supramolecular Morphology._ ChemRxiv, Version 1. https://doi.org/10.26434/chemrxiv.15008469/v1**
+
+Citation metadata for this repository is also provided in [`CITATION.cff`](CITATION.cff).
