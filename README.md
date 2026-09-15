@@ -1,18 +1,30 @@
-# Condition-Aware Machine Learning for Short-Peptide Self-Assembly
+# Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22775621.svg)](https://doi.org/10.5281/zenodo.22775621)
 
 Machine learning of **short-peptide bulk state and supramolecular morphology** using peptide chemistry together with experimental conditions, with explicit controls for molecular-identity leakage.
 
 Self-assembly is treated as a molecule–environment problem: the observed state depends on both the chemistry of the peptide system and the conditions under which it is assembled.
 
+**Quick links:** [Main notebook](notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb) · [Data instructions](data/README.md) · [Figures](figures) · [ChemRxiv preprint](https://doi.org/10.26434/chemrxiv.15008469/v1) · [Zenodo archive](https://doi.org/10.5281/zenodo.22775621)
+
 ## ChemRxiv preprint
 
-This work is published as a ChemRxiv preprint:
+This work is available as a ChemRxiv preprint:
 
 **Dennis Obinna Orji (2026). _Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly Across Bulk State and Supramolecular Morphology._ ChemRxiv, Version 1.**
 
 **DOI:** [10.26434/chemrxiv.15008469/v1](https://doi.org/10.26434/chemrxiv.15008469/v1)
 
 Published: **8 September 2026**
+
+## Archival release
+
+A persistent snapshot of the computational repository is archived on Zenodo:
+
+**DOI:** [10.5281/zenodo.22775621](https://doi.org/10.5281/zenodo.22775621)
+
+The Zenodo record provides a citable, versioned archive of the code, notebook, figures, documentation, and reproducibility resources associated with this project. The GitHub repository remains the development location, while the Zenodo DOI should be used when a persistent software/repository citation is required.
 
 ## Study highlights
 
@@ -128,7 +140,7 @@ data/raw/peptideminer_phase_data_clean.csv
 data/raw/sapdb_v1.csv
 ```
 
-The raw source datasets are intentionally not duplicated in this repository; the data README links to the upstream resources.
+The raw source datasets are intentionally not duplicated in this repository or redistributed in the project archive; the data README links to the upstream resources.
 
 ### 4. Run the analysis
 
@@ -137,6 +149,8 @@ Launch Jupyter from the repository directory and open:
 [`notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb`](notebooks/Condition_Aware_Peptide_Self_Assembly_ML.ipynb)
 
 The notebook writes generated datasets, tables, model objects and publication figures to `paper_outputs/`. That directory is ignored by Git because it is reproducible from the source data and notebook.
+
+For exact archival reproducibility, use the Zenodo snapshot associated with DOI [10.5281/zenodo.22775621](https://doi.org/10.5281/zenodo.22775621). The current GitHub `main` branch may evolve after the archived release.
 
 ## Data sources
 
@@ -153,8 +167,16 @@ The descriptor representation is primarily composition- and physicochemistry-awa
 
 ## Citation
 
-Please cite the associated ChemRxiv preprint:
+### Scientific study
+
+Please cite the associated ChemRxiv preprint when referring to the scientific study and its results:
 
 **Dennis Obinna Orji (2026). _Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly Across Bulk State and Supramolecular Morphology._ ChemRxiv, Version 1. https://doi.org/10.26434/chemrxiv.15008469/v1**
+
+### Software and computational archive
+
+If you use the code, notebook, figures, or repository resources, cite the Zenodo archive:
+
+**Orji, Dennis Obinna (2026). _Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly._ Zenodo. https://doi.org/10.5281/zenodo.22775621**
 
 Citation metadata for this repository is also provided in [`CITATION.cff`](CITATION.cff).
