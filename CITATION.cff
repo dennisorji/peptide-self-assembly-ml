@@ -5,6 +5,8 @@ type: software
 authors:
   - family-names: "Orji"
     given-names: "Dennis Obinna"
+    orcid: "https://orcid.org/0009-0009-1674-0883"
+doi: "10.5281/zenodo.22775621"
 repository-code: "https://github.com/dennisorji/peptide-self-assembly-ml"
 url: "https://github.com/dennisorji/peptide-self-assembly-ml"
 date-released: "2026-09-07"
@@ -14,6 +16,7 @@ preferred-citation:
   authors:
     - family-names: "Orji"
       given-names: "Dennis Obinna"
+      orcid: "https://orcid.org/0009-0009-1674-0883"
   year: 2026
   doi: "10.26434/chemrxiv.15008469/v1"
   url: "https://doi.org/10.26434/chemrxiv.15008469/v1"
