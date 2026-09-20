@@ -1,6 +1,7 @@
 # Condition-Aware and Leakage-Resistant Machine Learning of Short-Peptide Self-Assembly
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22775621.svg)](https://doi.org/10.5281/zenodo.22775621)
+[![ChemRxiv](https://img.shields.io/badge/ChemRxiv-10.26434%2Fchemrxiv.15008469%2Fv1-blue.svg)](https://doi.org/10.26434/chemrxiv.15008469/v1)
 
 Machine learning of **short-peptide bulk state and supramolecular morphology** using peptide chemistry together with experimental conditions, with explicit controls for molecular-identity leakage.
 
